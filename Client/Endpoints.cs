@@ -17,7 +17,7 @@ namespace WordPressUniversal.Client
         /// <param name="status">the post status based on the PostStatus enumeration</param>
         /// <param name="number">the number of posts to fetch (0-100). default value goes to 10.</param>
         /// <returns>the generated post url as string</returns>
-        public string postsUrl(string site, PostType type, PostStatus status, int? number = null)
+        public static string posts(string site, PostType type, PostStatus status, int? number = null)
         {
             int postNumber = 10;
 
