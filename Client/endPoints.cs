@@ -7,12 +7,12 @@ using WordPressUniversal.Models;
 
 namespace WordPressUniversal.Client
 {
-    public class EndPoints
+    public class Endpoints
     {
         /// <summary>
         /// generates the url for all requests to fetch posts from WordPress
         /// </summary>
-        /// <param name="site">the site name. insert without http:// prefix</param>
+        /// <param name="site">the site url. insert without http:// prefix</param>
         /// <param name="type">the post type based on the PostType enumeration</param>
         /// <param name="status">the post status based on the PostStatus enumeration</param>
         /// <param name="number">the number of posts to fetch (0-100). default value goes to 10.</param>
@@ -20,14 +20,15 @@ namespace WordPressUniversal.Client
         public string postsUrl(string site, PostType type, PostStatus status, int? number = null)
         {
             int postNumber = 10;
-            if (number != null)
+
+            if (number.HasValue)
             {
-                postNumber = Convert.ToInt32(number);
+                postNumber = number.Value;
             }
 
-            var postType = Enum.GetName(typeof(PostType), type).ToLower();
+            var postType = Enum.GetName(typeof(PostType), type).ToLowerInvariant();
 
-            var postStatus = Enum.GetName(typeof(PostStatus), status).ToLower();
+            var postStatus = Enum.GetName(typeof(PostStatus), status).ToLowerInvariant();
 
             return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, number, postType, postStatus);
                               
