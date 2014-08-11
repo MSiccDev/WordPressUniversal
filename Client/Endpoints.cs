@@ -30,7 +30,7 @@ namespace WordPressUniversal.Client
 
             var postStatus = Enum.GetName(typeof(PostStatus), status).ToLowerInvariant();
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, number, postType, postStatus);
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, postNumber, postType, postStatus);
                               
         }
     }
