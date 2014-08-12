@@ -58,11 +58,11 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetJSonClient("apps.msicc.net", WordPressUniversal.Models.PostType.post, WordPressUniversal.Models.PostStatus.publish);
+            var response = await wordpressClient.getPostList("apps.msicc.net", WordPressUniversal.Models.PostType.post, WordPressUniversal.Models.PostStatus.publish);
 
             HideLoading();
 
-            MessageDialog msg = new MessageDialog(response);
+            MessageDialog msg = new MessageDialog(response.posts_list[0].post_title);
             await msg.ShowAsync();
 
         }

@@ -44,9 +44,19 @@
   <ItemGroup>
     <Compile Include="Client\Endpoints.cs" />
     <Compile Include="Client\WordPressClient.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostsList.cs" />
     <Compile Include="Models\PostStatus.cs" />
     <Compile Include="Models\PostType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

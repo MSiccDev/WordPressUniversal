@@ -19,18 +19,16 @@ namespace WordPressUniversal.Client
         /// <returns>the generated post url as string</returns>
         public static string posts(string site, PostType type, PostStatus status, int? number = null)
         {
-            int postNumber = 10;
-
-            if (number.HasValue)
+            if (!number.HasValue)
             {
-                postNumber = number.Value;
+                number = 10;
             }
 
             var postType = Enum.GetName(typeof(PostType), type).ToLowerInvariant();
 
             var postStatus = Enum.GetName(typeof(PostStatus), status).ToLowerInvariant();
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, postNumber, postType, postStatus);
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, number, postType, postStatus);
                               
         }
     }

@@ -26,10 +26,6 @@ namespace Windows8Test
     {
         WordPressClient wordpressClient;
 
-        ProgressBar loadingAnimation;
-
-
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,11 +36,11 @@ namespace Windows8Test
             ShowProgressBar();
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetJSonClient("apps.msicc.net", WordPressUniversal.Models.PostType.post, WordPressUniversal.Models.PostStatus.publish);
+            var response = await wordpressClient.getPostList("apps.msicc.net", WordPressUniversal.Models.PostType.post, WordPressUniversal.Models.PostStatus.publish);
 
             HideProgressBar();
 
-            MessageDialog msg = new MessageDialog(response);
+            MessageDialog msg = new MessageDialog(response.posts_list[0].post_title);
             await msg.ShowAsync();
         }
 
