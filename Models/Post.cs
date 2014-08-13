@@ -28,7 +28,7 @@ namespace WordPressUniversal.Models
         /// The author of the post.
         /// </summary>
         [JsonProperty("author")]
-        public object post_author {get; set;}
+        public Author post_author {get; set;}
 
         /// <summary>
         /// The post's creation time.

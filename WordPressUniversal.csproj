@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Client\Endpoints.cs" />
     <Compile Include="Client\WordPressClient.cs" />
+    <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostsList.cs" />
     <Compile Include="Models\PostStatus.cs" />
