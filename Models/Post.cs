@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordPressUniversal.Models
+namespace WordPressUniversal.Helpers
 {
     /// <summary>
     /// base model that contains data of a WordPress post

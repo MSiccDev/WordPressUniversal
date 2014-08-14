@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
@@ -45,7 +44,9 @@
     <Compile Include="Client\Endpoints.cs" />
     <Compile Include="Client\WordPressClient.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Helpers\PostCategories.cs" />
     <Compile Include="Models\PostsList.cs" />
     <Compile Include="Models\PostStatus.cs" />
     <Compile Include="Models\PostType.cs" />

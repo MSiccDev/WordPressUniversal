@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WordPressUniversal.Client;
+using WordPressUniversal.Helpers;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,12 +37,18 @@ namespace Windows8Test
             ShowProgressBar();
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.getPostList("apps.msicc.net", WordPressUniversal.Models.PostType.post, WordPressUniversal.Models.PostStatus.publish);
+            var response = await wordpressClient.getPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
 
             HideProgressBar();
 
-            MessageDialog msg = new MessageDialog(response.posts_list[0].post_title);
+            //getting string of JObject Keys in post_categories
+            var postcats = PostCategories.GetPostCategories(response.posts_list[0].post_categories);
+
+            MessageDialog msg = new MessageDialog(postcats);
             await msg.ShowAsync();
+
+            
+           
         }
 
         private void ShowProgressBar()

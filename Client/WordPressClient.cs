@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Web.Http;
-using WordPressUniversal.Models;
+using WordPressUniversal.Helpers;
 
 namespace WordPressUniversal.Client
 {
