@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace WordPressUniversal.Helpers
 {
     /// <summary>
-    /// List of posts returned by the API
+    /// base Model for List of posts returned by the API
     /// </summary>
     public class PostsList
     {

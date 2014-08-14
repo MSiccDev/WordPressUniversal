@@ -22,7 +22,7 @@ namespace WordPressUniversal.Helpers
         /// The site ID.
         /// </summary>
         [JsonProperty("site_ID")]
-        public int side_id {get; set;}
+        public int site_id {get; set;}
 
         /// <summary>
         /// The author of the post.

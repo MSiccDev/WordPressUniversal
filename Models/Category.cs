@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WordPressUniversal.Helpers
 {
+    /// <summary>
+    /// base Model for WordPress category
+    /// </summary>
     public class Category
     {
         /// <summary>
