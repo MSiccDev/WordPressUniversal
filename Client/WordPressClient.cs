@@ -42,7 +42,7 @@ namespace WordPressUniversal.Client
         /// <param name="type"></param>
         /// <param name="status"></param>
         /// <param name="number"></param>
-        /// <returns>ObservableCollection<Post>, containing all posts that match the query</returns>
+        /// <returns>List<Post>, containing all posts that match the query</returns>
         public async Task<PostsList> getPostList(string site, PostType type, PostStatus status, int? number = null)
         {
             PostsList post_list = new PostsList();

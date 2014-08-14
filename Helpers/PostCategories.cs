@@ -13,17 +13,17 @@ namespace WordPressUniversal.Helpers
     public class PostCategories
     {
         /// <summary>
-        /// parses the keys from object post_categories 
+        /// parses the keys from object categories 
         /// </summary>
-        /// <param name="post_categories">object post_categories from Post</param>
+        /// <param name="categories">object categories from Post</param>
         /// <returns>string that contains all post categories</returns>
-        public static string GetString(object post_categories)
+        public static string GetString(object categories)
         {
             string cat_string = string.Empty;
             int cat_obj_count = 0;
 
             //parsing as object to avoid dependence on JSON.Net in app project
-            JObject cat_obj = JObject.Parse(post_categories.ToString());
+            JObject cat_obj = JObject.Parse(categories.ToString());
 
             foreach (var item in cat_obj)
             {
