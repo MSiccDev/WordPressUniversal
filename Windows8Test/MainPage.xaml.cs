@@ -42,7 +42,7 @@ namespace Windows8Test
             HideProgressBar();
 
             //getting string of JObject Keys in post_categories
-            var postcats = PostCategories.GetPostCategories(response.posts_list[0].post_categories);
+            var postcats = PostCategories.GetString(response.posts_list[0].post_categories);
 
             MessageDialog msg = new MessageDialog(postcats);
             await msg.ShowAsync();

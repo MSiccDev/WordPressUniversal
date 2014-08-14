@@ -17,7 +17,7 @@ namespace WordPressUniversal.Helpers
         /// </summary>
         /// <param name="post_categories">object post_categories from Post</param>
         /// <returns>string that contains all post categories</returns>
-        public static string GetPostCategories(object post_categories)
+        public static string GetString(object post_categories)
         {
             string cat_string = string.Empty;
             int cat_obj_count = 0;
