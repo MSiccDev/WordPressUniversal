@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WordPressUniversal.Client;
 using WordPressUniversal.Helpers;
+using WordPressUniversal.Utils;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -43,6 +44,9 @@ namespace Windows8Test
 
             //getting string of JObject Keys in post_categories
             var postcats = PostCategories.GetString(response.posts_list[0].categories);
+
+            //getting list of attachments
+            var attachments = PostAttachments.GetList(response.posts_list[1].attachements);
 
             MessageDialog msg = new MessageDialog(postcats);
             await msg.ShowAsync();

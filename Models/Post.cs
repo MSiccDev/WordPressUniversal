@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WordPressUniversal.Models;
 
 namespace WordPressUniversal.Helpers
 {
@@ -251,7 +252,7 @@ namespace WordPressUniversal.Helpers
         /// Protected meta keys can be made available with the rest_api_allowed_public_metadata filter on WordPress.
         /// </summary>
         [JsonProperty("metadata")]
-        public object metadata {get; set;}
+        public List<MetaData> metadata {get; set;}
 
         /// <summary>
         /// API result meta data

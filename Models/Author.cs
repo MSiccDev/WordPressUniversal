@@ -14,55 +14,55 @@ namespace WordPressUniversal.Helpers
         /// The author's id.
         /// </summary>
         [JsonProperty("ID")]
-        public int author_id { get; set; }
+        public int id { get; set; }
 
         /// <summary>
         /// the author's login name
         /// </summary>
         [JsonProperty("login")]
-        public string author_login { get; set; }
+        public string login { get; set; }
 
         /// <summary>
         /// ?
         /// </summary>
         [JsonProperty("email")]
-        public bool author_email { get; set; }
+        public bool email { get; set; }
 
         /// <summary>
         /// the author's name
         /// </summary>
         [JsonProperty("name")]
-        public string author_name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// the author's nice name
         /// </summary>
         [JsonProperty("nice_name")]
-        public string author_nice_name { get; set; }
+        public string nice_name { get; set; }
 
         /// <summary>
         /// the author's website
         /// </summary>
         [JsonProperty("URL")]
-        public string author_website { get; set; }
+        public string website { get; set; }
 
         /// <summary>
         /// the author's avatar url 
         /// </summary>
         [JsonProperty("avatar_URL")]
-        public string author_avatar_url { get; set; }
+        public string avatar_url { get; set; }
 
         /// <summary>
         /// the author's profile url
         /// </summary>
         [JsonProperty("profile_URL")]
-        public string author_profile_url { get; set; }
+        public string profile_url { get; set; }
 
         /// <summary>
         /// the site ID for this author object
         /// </summary>
         [JsonProperty("site_ID")]
-        public int author_site_id { get; set; }
+        public int site_id { get; set; }
 
 
     }

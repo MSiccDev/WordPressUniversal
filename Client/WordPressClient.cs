@@ -55,7 +55,7 @@ namespace WordPressUniversal.Client
             }
             else
             {
-                throw new NullReferenceException("response does not contain any data, please try again with different terms.");
+                throw new NullReferenceException("response is empty");
             }
 
             return post_list;
