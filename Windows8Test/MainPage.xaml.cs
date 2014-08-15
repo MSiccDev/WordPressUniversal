@@ -40,18 +40,7 @@ namespace Windows8Test
 
             var response = await wordpressClient.GetPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
 
-            HideProgressBar();
-
-            //getting string of JObject Keys in post_categories
-            var postcats = PostCategories.GetString(response.posts_list[0].categories);
-
-            //getting list of attachments
-            var attachments = PostAttachments.GetList(response.posts_list[1].attachements);
-
-            MessageDialog msg = new MessageDialog(postcats);
-            await msg.ShowAsync();
-
-            
+            HideProgressBar();            
            
         }
 

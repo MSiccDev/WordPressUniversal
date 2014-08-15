@@ -60,10 +60,7 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetPostList("msicc.net", WordPressUniversal.Helpers.PostType.page, WordPressUniversal.Helpers.PostStatus.publish);
-
-            var metadata = PostMetaData.GetList(response.posts_list[0].metadata);
-
+            var response = await wordpressClient.GetPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
 
             HideLoading();
 

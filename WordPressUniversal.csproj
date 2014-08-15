@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Client\WordPressClient.cs" />
     <Compile Include="Models\MetaData.cs" />
+    <Compile Include="Models\PostMeta.cs" />
+    <Compile Include="Models\PostMetaLinks.cs" />
     <Compile Include="Utils\PostAttachments.cs" />
     <Compile Include="Models\Attachment.cs" />
     <Compile Include="Models\Author.cs" />

@@ -258,7 +258,7 @@ namespace WordPressUniversal.Helpers
         /// API result meta data
         /// </summary>
         [JsonProperty("meta")]
-        public object meta { get; set; }
+        public PostMeta meta { get; set; }
 
     }
 }

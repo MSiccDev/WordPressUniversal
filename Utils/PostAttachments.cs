@@ -9,7 +9,7 @@ using WordPressUniversal.Models;
 
 namespace WordPressUniversal.Utils
 {
-    public class PostAttachments
+    class PostAttachments
     {
         public static List<Attachment> GetList(object attachments)
         {

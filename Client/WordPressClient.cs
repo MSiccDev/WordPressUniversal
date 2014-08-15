@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using WordPressUniversal.Helpers;
+using WordPressUniversal.Models;
+using WordPressUniversal.Utils;
 
 namespace WordPressUniversal.Client
 {
@@ -84,6 +86,37 @@ namespace WordPressUniversal.Client
             if (response != null)
             {
                 post_list = JsonConvert.DeserializeObject<PostsList>(response);
+
+                foreach (var item in post_list.posts_list)
+                {
+                    //getting categories as string but handled as object to keep deserializing of posts possible
+                    if (item.categories != null)
+                    {
+                        var cat_object = item.categories;
+                        item.categories = PostCategories.GetString(cat_object);
+                    }
+
+                    //getting tags as string but handled as object to keep deserializing of posts possible
+                    if (item.tags != null)
+                    {
+                        var tags_object = item.tags;
+                        item.tags = PostTags.GetString(tags_object);
+                    }
+
+                    //getting attachments as string but handled as object to keep deserializing of posts possible
+                    if (item.attachements != null)
+                    {
+                        var attachments_obj = item.attachements;
+                        item.attachements = PostAttachments.GetList(attachments_obj);
+                    }
+
+                    //getting PostMetaData as string but handled as object to keep deserializing of posts possible
+                    if (item.metadata != null)
+                    {
+                        var metadata_obj = item.metadata;
+                        item.metadata = PostMetaData.GetList(metadata_obj);
+                    }
+                }
             }
             else
             {

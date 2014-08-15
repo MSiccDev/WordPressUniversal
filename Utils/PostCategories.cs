@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WordPressUniversal.Utils
 {
-    public class PostCategories
+    class PostCategories
     {
         /// <summary>
         /// parses the keys from object categories of a post 

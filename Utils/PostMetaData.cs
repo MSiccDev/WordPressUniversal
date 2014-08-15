@@ -13,7 +13,7 @@ namespace WordPressUniversal.Utils
     /// <summary>
     /// converts a post's meta data into a List<MetaData>
     /// </summary>
-    public class PostMetaData
+    class PostMetaData
     {
         public static List<MetaData> GetList(object metadata)
         {
