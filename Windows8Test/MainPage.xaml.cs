@@ -38,7 +38,7 @@ namespace Windows8Test
             ShowProgressBar();
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.getPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
+            var response = await wordpressClient.GetPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
 
             HideProgressBar();
 

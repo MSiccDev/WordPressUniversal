@@ -252,7 +252,7 @@ namespace WordPressUniversal.Helpers
         /// Protected meta keys can be made available with the rest_api_allowed_public_metadata filter on WordPress.
         /// </summary>
         [JsonProperty("metadata")]
-        public List<MetaData> metadata {get; set;}
+        public object metadata {get; set;}
 
         /// <summary>
         /// API result meta data

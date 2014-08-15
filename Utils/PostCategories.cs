@@ -22,7 +22,7 @@ namespace WordPressUniversal.Utils
             string cat_string = string.Empty;
             int cat_obj_count = 0;
 
-            //avoid NullReferenceExcpetion as the object can be null on certain objects
+            //avoid NullReferenceExcpetion as the object can be null on certain post objects
             if (categories != null)
             {
                 //parsing as object to avoid dependence on JSON.Net in app project
