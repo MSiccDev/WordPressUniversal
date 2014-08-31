@@ -15,8 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WordPressUniversal.Client;
-using WordPressUniversal.Helpers;
-using WordPressUniversal.Utils;
+
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -60,7 +59,7 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetPostList("msicc.net", WordPressUniversal.Helpers.PostType.post, WordPressUniversal.Helpers.PostStatus.publish);
+            var response = await wordpressClient.GetCategoriesList("msicc.net");
 
             HideLoading();
 

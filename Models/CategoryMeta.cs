@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace WordPressUniversal.Models
 {
     /// <summary>
-    /// base model for post meta
+    /// base model for category meta
     /// </summary>
-    public class PostMeta
+    public class CategoryMeta
     {
         /// <summary>
         /// gets the meta object links
         /// </summary>
         [JsonProperty("links")]
-        public PostMetaLinks links { get; set;}
+        public CategoryMetaLinks links { get; set; }
     }
 }

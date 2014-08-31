@@ -9,8 +9,14 @@ using WordPressUniversal.Models;
 
 namespace WordPressUniversal.Utils
 {
+    /// <summary>
+    /// helper class for post or page attachments
+    /// </summary>
     class PostAttachments
     {
+        /// <summary>
+        /// deserializes the attachments of a post or page into a List
+        /// </summary>
         public static List<Attachment> GetList(object attachments)
         {
             List<Attachment> attachmentList = new List<Attachment>();

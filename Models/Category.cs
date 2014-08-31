@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordPressUniversal.Helpers
+namespace WordPressUniversal.Models
 {
     /// <summary>
     /// base Model for WordPress category
@@ -51,7 +51,7 @@ namespace WordPressUniversal.Helpers
         /// <summary>
         /// the catgetory's meta
         /// </summary>
-        public object meta { get; set; }
+        public CategoryMeta meta { get; set; }
 
     }
 }
