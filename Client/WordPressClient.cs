@@ -24,18 +24,24 @@ namespace WordPressUniversal.Client
         /// <param name="type">the post type based on the PostType enumeration</param>
         /// <param name="status">the post status based on the PostStatus enumeration</param>
         /// <param name="number">the number of posts to fetch (0-100). default value goes to 10.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>the raw json string for posts or pages</returns>
-        private async Task<string> getPosts(string site, PostType type, PostStatus status, int? number = null)
+        private async Task<string> getPosts(string site, PostType type, PostStatus status, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 10;
             }
 
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
 
-            return await client.GetStringAsync(new Uri(postUrl(site, type, status, number)));
+            return await client.GetStringAsync(new Uri(postUrl(site, type, status, number, offset)));
         }
 
 
@@ -46,19 +52,25 @@ namespace WordPressUniversal.Client
         /// <param name="type">the post type based on the PostType enumeration</param>
         /// <param name="status">the post status based on the PostStatus enumeration</param>
         /// <param name="number">the number of posts to fetch (0-100). default value goes to 10.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>the generated post url as string</returns>
-        private static string postUrl(string site, PostType type, PostStatus status, int? number = null)
+        private static string postUrl(string site, PostType type, PostStatus status, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 10;
             }
 
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
             var postType = Enum.GetName(typeof(PostType), type).ToLowerInvariant();
 
             var postStatus = Enum.GetName(typeof(PostStatus), status).ToLowerInvariant();
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&type={2}&status={3}", site, number, postType, postStatus);
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/?number={1}&offset={2}&type={3}&status={4}", site, number, offset, postType, postStatus);
 
         }
         #endregion
@@ -69,18 +81,24 @@ namespace WordPressUniversal.Client
         /// </summary>
         /// <param name="site">the site url. insert without http:// prefix</param>
         /// <param name="number">The number of categories to return. Limit: 1000. Default: 100.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>raw json string for categories</returns>
-        private async Task<string> getCatgeories(string site, int? number = null)
+        private async Task<string> getCatgeories(string site, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 100;
             }
 
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
              HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
 
-            return await client.GetStringAsync(new Uri(categoriesUrl(site, number)));
+            return await client.GetStringAsync(new Uri(categoriesUrl(site, number, offset)));
         }
 
         /// <summary>
@@ -88,15 +106,21 @@ namespace WordPressUniversal.Client
         /// </summary>
         /// <param name="site">the site url. insert without http:// prefix</param>
         /// <param name="number">The number of categories to return. Limit: 1000. Default: 100.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>the generated url for fetching categories as string</returns>
-        private static string categoriesUrl(string site, int? number = null)
+        private static string categoriesUrl(string site, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 100;
             }
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/categories/?number={1}", site, number);
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/categories/?number={1}&offset={2}", site, number, offset);
         }
         #endregion
 
@@ -109,8 +133,9 @@ namespace WordPressUniversal.Client
         /// <param name="type">the comments type to return</param>
         /// <param name="status">the comments status to return</param>
         /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>raw json string for comments of a site or post</returns>
-        private async Task<string> getComments(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id = null, int? number = null)
+        private async Task<string> getComments(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id = null, int? number = null, int? offset =null)
         {
             string url = string.Empty;
 
@@ -119,14 +144,19 @@ namespace WordPressUniversal.Client
                 number = 20;
             }
 
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
             if (listType == CommentsListType.site)
             {
-                url = siteCommentsUrl(site, type, status, number);
+                url = siteCommentsUrl(site, type, status, number, offset);
             }
 
             if (listType == CommentsListType.post)
             {
-                url = postCommentsUrl(site, post_id, type, status, number);
+                url = postCommentsUrl(site, post_id, type, status, number, offset);
             }
 
             HttpClient client = new HttpClient();
@@ -142,16 +172,21 @@ namespace WordPressUniversal.Client
         /// <param name="site">the site url. insert without http:// prefix</param>
         /// <param name="type">the comments type to return</param>
         /// <param name="status">the comments status to return</param>
-        /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// <param name="number">The number of comments to return. Limit: 100. Default: 20.</param>
         /// /// <returns>the generated url for fetching recent site comments</returns>
-        private static string siteCommentsUrl(string site, CommentType type, CommentStatus status, int? number = null)
+        private static string siteCommentsUrl(string site, CommentType type, CommentStatus status, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 100;
             }
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/comments/?number={1}&type={2}&status={3}", site, number, type, status);
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/comments/?number={1}&offset={2}&type={3}&status={4}", site, number, offset, type, status);
 
         }
 
@@ -162,15 +197,21 @@ namespace WordPressUniversal.Client
         /// <param name="type">the comments type to return</param>
         /// <param name="status">the comments status to return</param>
         /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>the generated url for fetching a post's comments</returns>
-        private static string postCommentsUrl(string site, string post_id, CommentType type, CommentStatus status, int? number = null)
+        private static string postCommentsUrl(string site, string post_id, CommentType type, CommentStatus status, int? number = null, int? offset = null)
         {
             if (!number.HasValue)
             {
                 number = 100;
             }
 
-            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/{1}/replies/?number={2}&type={3}&status={4}", site, post_id, number, type, status);
+            if (!offset.HasValue)
+            {
+                offset = 0;
+            }
+
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/{1}/replies/?number={2}&offset={3}&type={4}&status={5}", site, post_id, number, offset, type, status);
 
         }
         #endregion
@@ -186,16 +227,17 @@ namespace WordPressUniversal.Client
         /// <summary>
         /// Wraps the returning posts into Post objects. Uses JSON.net for deserialization.
         /// </summary>
-        /// <param name="site"></param>
-        /// <param name="type"></param>
-        /// <param name="status"></param>
-        /// <param name="number"></param>
+        /// <param name="site">the site url. insert without http:// prefix</param>
+        /// <param name="type">the type of posts that shall be returned (post or page)</param>
+        /// <param name="status">the status of posts that shall be returned</param>
+        /// <param name="number">the number of posts that shall be returned</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>List of all posts that matching the query</returns>
-        public async Task<PostsList> GetPostList(string site, PostType type, PostStatus status, int? number = null)
+        public async Task<PostsList> GetPostList(string site, PostType type, PostStatus status, int? number = null, int? offset = null)
         {
             PostsList post_list = new PostsList();
 
-            var response = await getPosts(site, type, status, number);
+            var response = await getPosts(site, type, status, number, offset);
 
             if (response != null)
             {
@@ -244,14 +286,15 @@ namespace WordPressUniversal.Client
         /// <summary>
         /// Wraps the returning categories into category objects. Uses JSON.net for deserialization.
         /// </summary>
-        /// <param name="site"></param>
-        /// <param name="number"></param>
+        /// <param name="site">the site url. insert without http:// prefix</param>
+        /// <param name="number">the number of categories that shall be returned</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>List of all categories matching the query</returns>
-        public async Task<CategoriesList> GetCategoriesList(string site, int? number = null)
+        public async Task<CategoriesList> GetCategoriesList(string site, int? number = null, int? offset = null)
         {
             CategoriesList categories_list = new CategoriesList();
 
-            var response = await getCatgeories(site, number);
+            var response = await getCatgeories(site, number, offset);
 
             if (response != null)
             {
@@ -268,18 +311,19 @@ namespace WordPressUniversal.Client
         /// <summary>
         /// Wraps the returning comments into comment object. Uses JSON.net for deserialization.
         /// </summary>
-        /// <param name="site"></param>
-        /// <param name="listType"></param>
-        /// <param name="type"></param>
-        /// <param name="status"></param>
-        /// <param name="post_id"></param>
-        /// <param name="number"></param>
+        /// <param name="site">the site url. insert without http:// prefix</param>
+        /// <param name="listType">listType declares if site or post comments shall be returned</param>
+        /// <param name="type">the type of comments that shall be returned</param>
+        /// <param name="status">the status of the comments that shall be returned</param>
+        /// <param name="post_id">the post_id of which comments shall be fetched</param>
+        /// <param name="number">The number of comments to return. Limit: 100. Default: 20.</param>
+        /// <param name="offset">the 0-indexed offset for the request. Default value goes to 0. Use this parameter for pagination.</param>
         /// <returns>List of all comments matching the query</returns>
-        public async Task<CommentsList> GetCommentsList(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id= null, int? number = null)
+        public async Task<CommentsList> GetCommentsList(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id= null, int? number = null, int? offset = null)
         {
             CommentsList comments_list = new CommentsList();
 
-            var response = await getComments(site, listType, type, status, post_id, number);
+            var response = await getComments(site, listType, type, status, post_id, number, offset);
 
             if (response != null)
             {
