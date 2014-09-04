@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordPressUniversal.Helpers
+namespace WordPressUniversal.Models
 {
     /// <summary>
     /// base Model for List of posts returned by the API

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordPressUniversal.Helpers
+namespace WordPressUniversal.Models
 {
     public enum PostStatus
     {

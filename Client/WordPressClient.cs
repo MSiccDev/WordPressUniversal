@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using WordPressUniversal.Helpers;
 using WordPressUniversal.Models;
 using WordPressUniversal.Utils;
 
@@ -100,6 +100,81 @@ namespace WordPressUniversal.Client
         }
         #endregion
 
+        #region comments
+        /// <summary>
+        /// client to get json string of a site's or post's comments
+        /// </summary>
+        /// <param name="site_or_postid">the site url. insert without http:// prefix or the post id</param>
+        /// <param name="listType">the type of comments list to fetch</param>
+        /// <param name="type">the comments type to return</param>
+        /// <param name="status">the comments status to return</param>
+        /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// <returns>raw json string for comments of a site or post</returns>
+        private async Task<string> getComments(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id = null, int? number = null)
+        {
+            string url = string.Empty;
+
+            if (!number.HasValue)
+            {
+                number = 20;
+            }
+
+            if (listType == CommentsListType.site)
+            {
+                url = siteCommentsUrl(site, type, status, number);
+            }
+
+            if (listType == CommentsListType.post)
+            {
+                url = postCommentsUrl(site, post_id, type, status, number);
+            }
+
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
+
+            return await client.GetStringAsync(new Uri(url));
+        }
+
+
+        /// <summary>
+        /// used to generate the url for recent site comments
+        /// </summary>
+        /// <param name="site">the site url. insert without http:// prefix</param>
+        /// <param name="type">the comments type to return</param>
+        /// <param name="status">the comments status to return</param>
+        /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// /// <returns>the generated url for fetching recent site comments</returns>
+        private static string siteCommentsUrl(string site, CommentType type, CommentStatus status, int? number = null)
+        {
+            if (!number.HasValue)
+            {
+                number = 100;
+            }
+
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/comments/?number={1}&type={2}&status={3}", site, number, type, status);
+
+        }
+
+        /// <summary>
+        /// used to generate the url for a post's comments
+        /// </summary>
+        /// <param name="post_id">the post id for fetching the comments</param>
+        /// <param name="type">the comments type to return</param>
+        /// <param name="status">the comments status to return</param>
+        /// <param name="number">The number of categories to return. Limit: 100. Default: 20.</param>
+        /// <returns>the generated url for fetching a post's comments</returns>
+        private static string postCommentsUrl(string site, string post_id, CommentType type, CommentStatus status, int? number = null)
+        {
+            if (!number.HasValue)
+            {
+                number = 100;
+            }
+
+            return string.Format("https://public-api.wordpress.com/rest/v1/sites/{0}/posts/{1}/replies/?number={2}&type={3}&status={4}", site, post_id, number, type, status);
+
+        }
+        #endregion
+
         #endregion
 
 
@@ -115,7 +190,7 @@ namespace WordPressUniversal.Client
         /// <param name="type"></param>
         /// <param name="status"></param>
         /// <param name="number"></param>
-        /// <returns>List of all posts that match the query</returns>
+        /// <returns>List of all posts that matching the query</returns>
         public async Task<PostsList> GetPostList(string site, PostType type, PostStatus status, int? number = null)
         {
             PostsList post_list = new PostsList();
@@ -142,11 +217,18 @@ namespace WordPressUniversal.Client
                         item.tags = PostTags.GetString(tags_object);
                     }
 
-                    //getting attachments as string but handled as object to keep deserializing of posts possible
+                    //getting attachments as List but handled as object to keep deserializing of posts possible
                     if (item.attachements != null)
                     {
                         var attachments_obj = item.attachements;
                         item.attachements = PostAttachments.GetList(attachments_obj);
+                    }
+
+                    //getting metadata as List but handled as object to keep deserializing of posts possible
+                    if (item.metadata != null)
+                    {
+                        var metadata_obj = item.metadata;
+                        item.metadata = PostMetaData.GetList(metadata_obj);
                     }
                 }
             }
@@ -158,6 +240,13 @@ namespace WordPressUniversal.Client
             return post_list;
         }
 
+
+        /// <summary>
+        /// Wraps the returning categories into category objects. Uses JSON.net for deserialization.
+        /// </summary>
+        /// <param name="site"></param>
+        /// <param name="number"></param>
+        /// <returns>List of all categories matching the query</returns>
         public async Task<CategoriesList> GetCategoriesList(string site, int? number = null)
         {
             CategoriesList categories_list = new CategoriesList();
@@ -174,6 +263,59 @@ namespace WordPressUniversal.Client
             }
             return categories_list;
         }
+
+
+        /// <summary>
+        /// Wraps the returning comments into comment object. Uses JSON.net for deserialization.
+        /// </summary>
+        /// <param name="site"></param>
+        /// <param name="listType"></param>
+        /// <param name="type"></param>
+        /// <param name="status"></param>
+        /// <param name="post_id"></param>
+        /// <param name="number"></param>
+        /// <returns>List of all comments matching the query</returns>
+        public async Task<CommentsList> GetCommentsList(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id= null, int? number = null)
+        {
+            CommentsList comments_list = new CommentsList();
+
+            var response = await getComments(site, listType, type, status, post_id, number);
+
+            if (response != null)
+            {
+                comments_list = JsonConvert.DeserializeObject<CommentsList>(response);
+
+                foreach (var item in comments_list.comments)
+                {
+                    if (!item.parent.ToString().Contains("false"))
+                    {
+                        //try/catch is the only possible way to get around JsonReaderException, because parent is false not null if it has none
+                        try
+                        {
+                            JObject par = (JObject)item.parent;
+                            item.parent = new CommentParent()
+                            {
+                                parent_id = (int)par["ID"],
+                                type = (string)par["type"],
+                                link = (string)par["link"]
+                            };
+                        }
+                        catch {
+                            item.parent = null;
+                        }
+                    }
+
+                    else
+                    {
+                        throw new NullReferenceException("response is empty");
+                    }
+                }
+            }
+
+
+            return comments_list;
+        }
+
 
         #endregion
 

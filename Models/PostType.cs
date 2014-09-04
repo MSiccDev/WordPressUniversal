@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordPressUniversal.Helpers
+namespace WordPressUniversal.Models
 {
     /// <summary>
     /// provides the PostType that can be fetchted from WordPress

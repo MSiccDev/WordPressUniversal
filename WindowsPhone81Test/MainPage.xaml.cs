@@ -59,7 +59,8 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetCategoriesList("msicc.net");
+            ///throws exception on post!
+            var response = await wordpressClient.GetPostList("apps.msicc.net", WordPressUniversal.Models.PostType.page, WordPressUniversal.Models.PostStatus.publish);
 
             HideLoading();
 
