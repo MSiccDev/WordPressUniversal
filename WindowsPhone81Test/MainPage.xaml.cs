@@ -60,7 +60,7 @@ namespace WindowsPhone81Test
             wordpressClient = new WordPressClient();
 
             ///throws exception on post!
-            var response = await wordpressClient.GetPostList("apps.msicc.net", WordPressUniversal.Models.PostType.page, WordPressUniversal.Models.PostStatus.publish);
+            var response = await wordpressClient.GetCommentsList("msicc.net", WordPressUniversal.Models.CommentsListType.site, WordPressUniversal.Models.CommentType.comment, WordPressUniversal.Models.CommentStatus.approved);
 
             HideLoading();
 
