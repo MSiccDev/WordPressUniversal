@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="WordPressUniversal : PCL library that aims at simplyfing WordPress based news reader apps across C# platforms.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>WordPressUniversal</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/MSiccDev/WordPressUniversal">View on GitHub</a>
+
+          <h1 id="project_title">WordPressUniversal</h1>
+          <h2 id="project_tagline">PCL library that aims at simplyfing WordPress based news reader apps across C# platforms.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/MSiccDev/WordPressUniversal/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/MSiccDev/WordPressUniversal/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>WordPressUniversal is a PCL library that aims at simplyfing WordPress based news reader apps. Compatible with WP8&amp;81SL, WP8.1 Runtime, Win81 and Xamarin.iOS as well as Xamarin.Android. Currently, guest commenting is not supported by Jetpack's JSON API. </p>
+
+<p>I already reached out to them and will add this feature as soon as it is available.</p>
+
+<p>To get started, you declare a new WordPressClient:</p>
+
+<p><code>
+WordPressClient client = new WordPressClient();
+</code></p>
+
+<p>This enables you to use the  basic methods to fetch the important data from your WordPress site into your app:</p>
+
+<ul>
+<li><code>client.GetPostList(string site, PostType type, PostStatus status, int? number = null, int? offset = null)</code></li>
+<li><code>client.GetCategoriesList(string site, int? number = null, int? offset = null)</code></li>
+<li>
+<code>client.GetCommentsList(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id= null, int? number = null, int? offset = null)</code> </li>
+</ul><p>I will update this page soon with more details on how to use this library.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">WordPressUniversal maintained by <a href="https://github.com/MSiccDev">MSiccDev</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
