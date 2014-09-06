@@ -76,6 +76,17 @@ var categorieslist= await client.GetCategoriesList("yoursite.com");
 var categorieslist= await client.GetCategoriesList("yoursite.com", 100, 100);
 </code></p>
 <p></p>
+<h3>get a list of posts in a category:</h3>
+<p><code>
+var category_postlist= await client.GetCategoryPostList("yoursite.com", "category", PostType.post, PostStatus.publish, 10, 0);
+</code></p>
+<p>This fetches the 10 most recent posts in a category from your WordPress blog. 
+</p>
+<p>Pagination is supported by setting the offset:</p>
+<p><code>
+var category_postlist_page2 = await client.GetCategoryPostList("yoursite.com", "category", PostType.post, PostStatus.publish, 10, 10);
+</code></p>
+<p></p>
 <h3>get a list of most recent comments for your WordPress site:</h3>
 <p><code>
 var recent_commentslist= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved);
