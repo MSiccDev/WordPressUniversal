@@ -87,7 +87,7 @@ var recent_commentslist= await wordpressClient.GetCommentsList("yoursite.com", C
 var recent_commentslist_page2= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved, null, 20, 20);
 </code></p>
 <p></p>
-<h3>get a list of most recent comments for a post your WordPress site:</h3>
+<h3>get a list of most recent comments for a post</h3>
 <p><code>
 var post_commentslist= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.post, CommentType.comment, CommentStatus.approved, "post_id");
 </code></p>
