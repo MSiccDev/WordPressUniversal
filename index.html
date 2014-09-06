@@ -98,7 +98,8 @@ var post_commentslist= await wordpressClient.GetCommentsList("yoursite.com", Com
 var post_commentslist_page2= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved, "post_id", 20, 20);
 </code></p>
 <p></p>
-<p>All requests return objects that you can immediately work with. The library does all the deserialization for you (using JSON.net)</p>
+<p>All requests return objects that you can immediately work with. The library does all the deserialization for you (using JSON.net).</p>
+<p></p>
 <p>For questions contact me via Twitter: <a href="https://twitter.com/msicc">@msicc</a></p>
 <p></p>
 <h3>planned features:</h3>
@@ -106,7 +107,7 @@ var post_commentslist_page2= await wordpressClient.GetCommentsList("yoursite.com
   <li>load posts based on a category</li>
   <li>search posts/pages/comments</li>
   <li>post comments throuhg the API (as soon as this is technically possible)</li>
-  <li>converter for the post/page content. (currently a HTML formatted string is returned)</li>
+  <li>converter for the post/page content (currently a HTML formatted string is returned)</li>
 </ul>
 
 
