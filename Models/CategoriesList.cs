@@ -16,7 +16,7 @@ namespace WordPressUniversal.Models
         /// The total number of categories found that match the request (ignoring limits, offsets and pagination).
         /// </summary>
         [JsonProperty("found")]
-        public string categories_total_count { get; set; }
+        public int categories_total_count { get; set; }
 
         /// <summary>
         /// List of categories that match the request (including limits, offsets and pagination).

@@ -61,7 +61,7 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            var response = await wordpressClient.GetCategoryPostList("msicc.net", "wpdev", PostType.post, PostStatus.publish, 10, 10);
+            var response = await wordpressClient.GetCategoryPostList("msicc.net", "wpdev", PostType.post, PostStatus.publish);
             HideLoading();
 
         }

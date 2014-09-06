@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,17 @@ namespace WordPressUniversal.Models
         /// <summary>
         /// the API link to the actual category
         /// </summary>
+        [JsonProperty("help")]
         public string self { get; set; }
         /// <summary>
         /// the API link to the actual category's help
         /// </summary>
+        [JsonProperty("help")]
         public string help { get; set; }
         /// <summary>
         /// the API link to the actual category's site
         /// </summary>
+        [JsonProperty("site")]
         public string site { get; set; }
     }
 }

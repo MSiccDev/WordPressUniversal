@@ -21,6 +21,7 @@ namespace WordPressUniversal.Models
         /// <summary>
         /// list of comments returned by the request (including limits, offsets and pagination) 
         /// </summary>
-        public List<Comment> comments { get; set; }
+        [JsonProperty("comments")]
+        public List<Comment> commentsList { get; set; }
     }
 }

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\WordPressClient.cs" />
+    <Compile Include="Models\apiError.cs" />
     <Compile Include="Models\CategoriesList.cs" />
     <Compile Include="Models\CategoryMeta.cs" />
     <Compile Include="Models\CategoryMetaLinks.cs" />

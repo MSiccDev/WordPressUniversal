@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using WordPressUniversal.Client;
+using WordPressUniversal.Models;
 
 namespace Xamarin.AndroidTest
 {
@@ -38,7 +39,7 @@ namespace Xamarin.AndroidTest
             ShowLoading("loading...");
 
             wordpressclient = new WordPressClient();
-            var response = await wordpressclient.GetCategoriesList("msicc.net");
+            var response = await wordpressclient.GetPostList("msicc.net", PostType.post, PostStatus.publish);
 
             HideLoading();
             
