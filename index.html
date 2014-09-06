@@ -31,9 +31,9 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>WordPressUniversal is a PCL library that aims at simplyfing WordPress based news reader apps. Compatible with WP8&amp;81SL, WP8.1 Runtime, Win81 and Xamarin.iOS as well as Xamarin.Android. Currently, guest commenting is not supported by Jetpack's JSON API. </p>
+        <p>WordPressUniversal is a PCL library that aims at simplyfing WordPress based news reader apps. Compatible with WP8&amp;81SL, WP8.1 Runtime, Win81 and Xamarin.iOS as well as Xamarin.Android.</p>
 
-<p>I already reached out to them and will add this feature as soon as it is available.</p>
+<p>Currently, guest commenting is not supported by Jetpack's JSON API. I already reached out to them and will add this feature as soon as it is available.</p>
 
 <p>To get started, you declare a new WordPressClient:</p>
 
@@ -41,7 +41,7 @@
 WordPressClient client = new WordPressClient();
 </code></p>
 
-<p>This enables you to use the basic methods to fetch the important data from your WordPress site into your app:</p>
+<p>This enables you to use one of the basic methods to fetch the important data from your WordPress site into your app:</p>
 
 <h3>get a list of posts:</h3>
 <p><code>
@@ -56,14 +56,58 @@ var postlist_page2 = await client.GetPostList("yoursite.com", PostType.post, Pos
 <p></p>
 <h3>get a list of pages:</h3>
 <p><code>
-var postlist= await client.GetPostList("yoursite.com", PostType.page, PostStatus.publish, 10, 0);
+var pageslist= await client.GetPostList("yoursite.com", PostType.page, PostStatus.publish, 10, 0);
 </code></p>
 <p>This fetches 10 pages from your WordPress blog. 
 </p>
 <p>Pagination is supported by setting the offset:</p>
 <p><code>
-var postlist_page2 = await client.GetPostList("yoursite.com", PostType.page, PostStatus.publish, 10, 10);
+var pageslist_page2 = await client.GetPostList("yoursite.com", PostType.page, PostStatus.publish, 10, 10);
 </code></p>
+<p></p>
+<h3>get a list of categories:</h3>
+<p><code>
+var categorieslist= await client.GetCategoriesList("yoursite.com");
+</code></p>
+<p>This fetches 100 categories from your WordPress blog. To change the amount, you can set the optional number parameter (Limit: 1000). 
+</p>
+<p>Pagination is supported by setting the offset:</p>
+<p><code>
+var categorieslist= await client.GetCategoriesList("yoursite.com", 100, 100);
+</code></p>
+<p></p>
+<h3>get a list of most recent comments for your WordPress site:</h3>
+<p><code>
+var recent_commentslist= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved);
+</code></p>
+<p>This fetches the 20 most recent comments from your WordPress blog. To change the amount, your can set the optional number parameter (Limit: 100).
+</p>
+<p>Pagination is supported by setting the offset:</p>
+<p><code>
+var recent_commentslist_page2= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved, null, 20, 20);
+</code></p>
+<p></p>
+<h3>get a list of most recent comments for a post your WordPress site:</h3>
+<p><code>
+var post_commentslist= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.post, CommentType.comment, CommentStatus.approved, "post_id");
+</code></p>
+<p>This fetches the 20 most recent comments of a post from your WordPress blog. To change the amount, your can set the optional number parameter (Limit: 100).
+</p>
+<p>Pagination is supported by setting the offset:</p>
+<p><code>
+var post_commentslist_page2= await wordpressClient.GetCommentsList("yoursite.com", CommentsListType.site, CommentType.comment, CommentStatus.approved, "post_id", 20, 20);
+</code></p>
+<p></p>
+<p>All requests return objects that you can immediately work with. The library does all the deserialization for you (using JSON.net)</p>
+<p>For questions contact me via Twitter: <a href="https://twitter.com/msicc">@msicc</a></p>
+<p></p>
+<h3>planned features:</h3>
+<ul>
+  <li>load posts based on a category</li>
+  <li>search posts/pages/comments</li>
+  <li>post comments throuhg the API (as soon as this is technically possible)</li>
+  <li>converter for the post/page content. (currently a HTML formatted string is returned)</li>
+</ul>
 
 
 
