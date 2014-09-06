@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WordPressUniversal.Client;
+using WordPressUniversal.Models;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
@@ -59,9 +61,7 @@ namespace WindowsPhone81Test
             ShowLoading("loading...");
             wordpressClient = new WordPressClient();
 
-            ///throws exception on post!
-            var response = await wordpressClient.GetCommentsList("msicc.net", WordPressUniversal.Models.CommentsListType.site, WordPressUniversal.Models.CommentType.comment, WordPressUniversal.Models.CommentStatus.approved);
-
+            var response = await wordpressClient.GetCategoryPostList("msicc.net", "wpdev", PostType.post, PostStatus.publish, 10, 10);
             HideLoading();
 
         }
