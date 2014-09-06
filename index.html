@@ -41,14 +41,19 @@
 WordPressClient client = new WordPressClient();
 </code></p>
 
-<p>This enables you to use the  basic methods to fetch the important data from your WordPress site into your app:</p>
+<p>This enables you to use the basic methods to fetch the important data from your WordPress site into your app:</p>
 
 <ul>
-<li><code>client.GetPostList(string site, PostType type, PostStatus status, int? number = null, int? offset = null)</code></li>
-<li><code>client.GetCategoriesList(string site, int? number = null, int? offset = null)</code></li>
-<li>
-<code>client.GetCommentsList(string site, CommentsListType listType, CommentType type, CommentStatus status, string post_id= null, int? number = null, int? offset = null)</code> </li>
-</ul><p>I will update this page soon with more details on how to use this library.</p>
+<li><h3>get a list of posts</h3>
+<code>
+var postlist= await client.GetPostList("yoursite.com", PostType.post, PostStatus.publish, 10, 0);
+</code>
+This fetches the 10 most recent posts from your WordPress blog. Pagination is supported by setting the offset:
+<code>
+var postlist_page2 = await client.GetPostList("yoursite.com", PostType.post, PostStatus.publish, 10, 10);
+</code></li>
+
+</ul>
       </section>
     </div>
 
