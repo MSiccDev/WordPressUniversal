@@ -57,10 +57,10 @@ namespace WordPressUniversal.Client
                         }
 
                         //getting attachments as List but handled as object to keep deserializing of posts possible
-                        if (item.attachements != null)
+                        if (item.attachments != null)
                         {
-                            var attachments_obj = item.attachements;
-                            item.attachements = PostAttachments.GetList(attachments_obj);
+                            var attachments_obj = item.attachments;
+                            item.attachments = PostAttachments.GetList(attachments_obj);
                         }
 
                         //getting metadata as List but handled as object to keep deserializing of posts possible
@@ -230,10 +230,10 @@ namespace WordPressUniversal.Client
                         }
 
                         //getting attachments as List but handled as object to keep deserializing of posts possible
-                        if (item.attachements != null)
+                        if (item.attachments != null)
                         {
-                            var attachments_obj = item.attachements;
-                            item.attachements = PostAttachments.GetList(attachments_obj);
+                            var attachments_obj = item.attachments;
+                            item.attachments = PostAttachments.GetList(attachments_obj);
                         }
 
                         //getting metadata as List but handled as object to keep deserializing of posts possible

@@ -243,7 +243,7 @@ namespace WordPressUniversal.Models
         /// The Post attachments (keyed by internal attachment ID).
         /// </summary>
         [JsonProperty("attachments")]
-        public object attachements {get; set;}
+        public object attachments {get; set;}
 
         /// <summary>
         /// Array of post metadata keys and values. 
