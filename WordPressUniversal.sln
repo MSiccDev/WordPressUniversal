@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUniversal", "WordPressUniversal.csproj", "{24885A21-77D1-43C2-B65E-159AEFC2C2D6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUniversal10", "WordPressUniversal10\WordPressUniversal10.csproj", "{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUniversal", "WordPressUniversal8x\WordPressUniversal.csproj", "{24885A21-77D1-43C2-B65E-159AEFC2C2D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|ARM.ActiveCfg = Release|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x64.ActiveCfg = Release|Any CPU
-		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x86.ActiveCfg = Release|Any CPU
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -45,6 +35,22 @@ Global
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Release|x64.Build.0 = Release|x64
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Release|x86.ActiveCfg = Release|x86
 		{7E6FDD95-3F66-40CF-8A5D-36FB120ED8D6}.Release|x86.Build.0 = Release|x86
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|ARM.Build.0 = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x64.Build.0 = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{24885A21-77D1-43C2-B65E-159AEFC2C2D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
