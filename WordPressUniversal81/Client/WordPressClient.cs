@@ -18,7 +18,7 @@ namespace WordPressUniversal.Client
     {
         #region public methods
         /// <summary>
-        /// Wraps the returning posts into Post objects. Uses JSON.net for deserialization.
+        /// Wraps the returning posts into Post objects. Uses JSON.net for deserialization 
         /// </summary>
         /// <param name="site">the site url. insert without http:// prefix</param>
         /// <param name="type">the type of posts that shall be returned (post or page)</param>
